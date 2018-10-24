@@ -6,7 +6,7 @@ import java.net.Socket;
 
 import static constants.Configs.*;
 
-public class SocketClient {
+public class SocketClientOneSide {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 

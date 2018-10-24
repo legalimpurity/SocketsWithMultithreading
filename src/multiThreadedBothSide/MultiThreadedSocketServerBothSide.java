@@ -1,4 +1,4 @@
-package multiThreadedOneSide;
+package multiThreadedBothSide;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 
 import static constants.Configs.COMMUNICATION_PORT;
 
-public class MultiThreadedSocketServer {
+public class MultiThreadedSocketServerBothSide {
 
 
 
@@ -20,7 +20,7 @@ public class MultiThreadedSocketServer {
 
         int POOL_SIZE=10;
 
-        ExecutorService executor = Executors.newFixedThreadPool(POOL_SIZE);
+        ExecutorService executor = Executors.newCachedThreadPool();
 
         server = new ServerSocket(COMMUNICATION_PORT);
 
@@ -31,17 +31,7 @@ public class MultiThreadedSocketServer {
             Socket socket = server.accept();
 
             // Manages the connection on a different thread.
-            executor.submit(()->{
-                ObjectOutputStream objectOutputStream = null;
-                try {
-                    objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-                    objectOutputStream.writeObject("This is my servers message for you!");
-                    objectOutputStream.close();
-                    socket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+            executor.submit(new MultiThreadedSocketServerBothSideRunnable(socket));
 
         }
     }

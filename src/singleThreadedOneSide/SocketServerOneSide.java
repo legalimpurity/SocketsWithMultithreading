@@ -8,7 +8,7 @@ import java.net.Socket;
 
 import static constants.Configs.COMMUNICATION_PORT;
 
-public class SocketServer {
+public class SocketServerOneSide {
 
     private static ServerSocket server;
 
