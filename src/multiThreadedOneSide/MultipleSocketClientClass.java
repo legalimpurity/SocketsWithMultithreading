@@ -9,12 +9,12 @@ import static constants.Configs.HOST_ADDRESS;
 
 public class MultipleSocketClientClass {
 
-    public MultipleSocketClientClass() throws IOException, ClassNotFoundException {
+    public MultipleSocketClientClass(int clientID) throws IOException, ClassNotFoundException {
         Socket socket = new Socket(HOST_ADDRESS, COMMUNICATION_PORT);
         ObjectInputStream inputStream = null;
         inputStream = new ObjectInputStream(socket.getInputStream());
         String message = (String) inputStream.readObject();
-        System.out.println("Message from Server: " + message);
+        System.out.println("Message from Server to client "+clientID+" : "+ message);
         inputStream.close();
     }
 }

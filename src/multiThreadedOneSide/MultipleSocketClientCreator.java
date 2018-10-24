@@ -15,7 +15,7 @@ public class MultipleSocketClientCreator {
             nbr -> {
                 System.out.println("Creating Client "+nbr);
                 try {
-                    MultipleSocketClientClass mscc = new MultipleSocketClientClass();
+                    MultipleSocketClientClass mscc = new MultipleSocketClientClass(nbr);
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
