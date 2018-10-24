@@ -1,16 +1,16 @@
+package singleThreadedOneSide;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import static constants.Configs.COMMUNICATION_PORT;
+
 public class SocketServer {
 
-    public static int COMMUNICATION_PORT = 2981;
-
-
     private static ServerSocket server;
-
 
     public static void main(String args[]) throws IOException, ClassNotFoundException {
 
@@ -20,7 +20,7 @@ public class SocketServer {
             System.out.println("Waiting for client request");
             Socket socket = server.accept();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            objectOutputStream.writeObject("This is my message for you!");
+            objectOutputStream.writeObject("This is my servers message for you!");
             objectOutputStream.close();
             socket.close();
         }
